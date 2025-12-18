@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Connect Web (SDK) - CROW</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#7c3aed", // Violet-600
+                        primary_hover: "#8b5cf6", // Violet-500
+                        "background-dark": "#030005", // Deepest black
+                        "surface-dark": "#0a0a0f",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                        mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'pill': "9999px",
+                    },
+                    boxShadow: {
+                        'glow': '0 0 25px -5px rgba(124, 58, 237, 0.4)',
+                        'glow-hover': '0 0 35px -5px rgba(124, 58, 237, 0.6)',
+                        'card-glow': '0 0 40px -10px rgba(124, 58, 237, 0.15)',
+                    }
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .text-glow {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030005; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-gray-100 min-h-screen flex flex-col antialiased selection:bg-violet-500/30 selection:text-violet-200 overflow-x-hidden relative font-sans">
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute inset-0 bg-[#030005]"></div>
+<div class="absolute top-0 right-0 h-full w-[60vw] bg-gradient-to-l from-[#1e1035] via-[#0a0515] to-transparent opacity-60"></div>
+<div class="absolute top-1/2 right-[-10%] -translate-y-1/2 w-[50vw] h-[50vw] bg-violet-900/20 rounded-full blur-[120px] mix-blend-screen"></div>
+<div class="absolute inset-0 opacity-[0.07] mix-blend-overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBM9186nC0yZUNVUFQsJmJQknRzzd1AwL2I3qQuyt9v_TttYmsBObFae2tLBX02-ov1BYd6VcUw3Z6iiuB-b5QD-XrPY-_EOVG5eVTIPDNyFj4zZnUby6pJpUD8Yd1cV1qh1-Bz3kJ9jdffI4u-z-FYs5ExGr0v5Vjb2ORDUkKgMhxZduaD_ivZOQdfz9wmQD5WiW-mS98RHYrDsVS87PEOUqpfM1V_j_4cDoEI7MKJqvjs4zghP_QIMO3L6NVd7zST_F2DmWNPoHE');"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,0,5,0.4)_100%)]"></div>
+</div>
+<nav class="w-full flex justify-between items-center px-6 py-8 z-10 relative max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 relative flex items-center justify-center">
+<svg class="text-violet-500" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"></path>
+</svg>
+</div>
+<span class="font-semibold text-lg tracking-wide text-white">CROW</span>
+</div>
+<div class="flex items-center gap-4 text-sm">
+<a class="text-gray-500 hover:text-white transition-colors font-medium text-xs sm:text-sm" href="#">
+                Need help? Contact support
+            </a>
+</div>
+</nav>
+<main class="flex-grow flex flex-col items-center relative z-10 w-full px-4 pt-6 pb-20 max-w-[600px] mx-auto">
+<div class="w-full flex flex-col items-center text-center mb-10">
+<span class="text-xs font-semibold tracking-[0.2em] text-violet-400 uppercase mb-4">SETUP</span>
+<h1 class="text-4xl md:text-5xl font-semibold text-white mb-3 tracking-tight text-glow">
+                Connect Web.
+            </h1>
+<p class="text-gray-500 text-sm leading-relaxed">
+                Install the SDK and verify ingestion.
+            </p>
+</div>
+<div class="w-full space-y-10">
+<div class="space-y-4">
+<label class="text-sm font-medium text-gray-200 block">API Key</label>
+<div class="space-y-2">
+<div class="relative group">
+<input class="w-full bg-white/5 border border-white/10 rounded-full py-3.5 pl-5 pr-24 text-sm text-gray-300 focus:outline-none focus:border-violet-500/50 transition-all font-mono tracking-widest cursor-default" readonly="" type="text" value="••••••••••••••••••"/>
+<div class="absolute inset-y-0 right-3 flex items-center gap-1">
+<button aria-label="Reveal" class="p-2 text-gray-500 hover:text-white transition-colors rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button aria-label="Copy" class="p-2 text-gray-500 hover:text-white transition-colors rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1">
+<p class="text-xs text-gray-500">Use this key to authenticate web event ingestion.</p>
+<button class="text-xs font-medium text-violet-400 hover:text-violet-300 transition-colors whitespace-nowrap bg-violet-500/10 px-3 py-1.5 rounded-full border border-violet-500/20 hover:bg-violet-500/20">
+                            Copy API key
+                        </button>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<label class="text-sm font-medium text-gray-200">Install</label>
+<div class="flex bg-white/5 rounded-full p-1 border border-white/5">
+<button class="px-3 py-1 text-xs font-medium text-white bg-white/10 rounded-full shadow-sm">Bun</button>
+<button class="px-3 py-1 text-xs font-medium text-gray-500 hover:text-gray-300 transition-colors">npm</button>
+<button class="px-3 py-1 text-xs font-medium text-gray-500 hover:text-gray-300 transition-colors">pnpm</button>
+</div>
+</div>
+<div class="relative group">
+<div class="w-full bg-[#050508] border border-white/10 rounded-xl p-4 flex items-center justify-between group-hover:border-violet-500/30 transition-colors">
+<code class="text-sm text-gray-300 font-mono">bun add @crow/web-sdk</code>
+<button class="p-1.5 text-gray-500 hover:text-white transition-colors rounded-lg hover:bg-white/10">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+<div class="flex justify-end px-1">
+<button class="text-xs font-medium text-gray-400 hover:text-white transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+                        Copy install command
+                    </button>
+</div>
+</div>
+<div class="space-y-4">
+<label class="text-sm font-medium text-gray-200 block">Initialize</label>
+<div class="relative group">
+<div class="absolute top-3 right-3">
+<button class="p-1.5 text-gray-500 hover:text-white transition-colors rounded-lg hover:bg-white/10">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+<div class="w-full bg-[#050508] border border-white/10 rounded-xl p-4 overflow-x-auto group-hover:border-violet-500/30 transition-colors">
+<pre class="text-sm text-gray-400 font-mono leading-relaxed"><span class="text-violet-400">import</span> SDK
+<span class="text-violet-400">init</span> with apiKey
+optional orgId placeholder</pre>
+</div>
+</div>
+<p class="text-xs text-gray-500 px-1">Initialize once at app startup.</p>
+</div>
+<div class="pt-6 border-t border-white/5">
+<div class="space-y-6">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div class="space-y-1">
+<label class="text-sm font-medium text-gray-200 block">Send a test event</label>
+<p class="text-xs text-gray-500">Trigger a sample event to confirm ingestion.</p>
+</div>
+<button class="bg-primary hover:bg-primary_hover text-white text-sm font-medium px-5 py-2.5 rounded-full transition-all shadow-glow hover:shadow-glow-hover whitespace-nowrap">
+                            Send test event
+                        </button>
+</div>
+<div class="bg-[#050508] border border-white/10 rounded-xl p-3.5 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-gray-600 animate-pulse"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-0.5">Status</span>
+<span class="text-sm text-gray-300 font-medium">Waiting</span>
+</div>
+</div>
+<div class="flex flex-col items-end text-right">
+<span class="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-0.5">Last event received</span>
+<span class="text-sm text-gray-400 font-mono">—</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-4 pb-4">
+<button class="w-full bg-white/5 border border-white/5 text-gray-600 font-medium py-3.5 rounded-full cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 hover:bg-white/5" disabled="">
+<span>Connect</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

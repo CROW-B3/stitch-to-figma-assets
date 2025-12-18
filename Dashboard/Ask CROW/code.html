@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ask CROW - CROW Client Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#7c3aed", // Violet-600
+                        primary_hover: "#8b5cf6", // Violet-500
+                        "background-dark": "#030005", // Deepest black
+                        "surface-dark": "#0a0a0f",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'pill': "9999px",
+                    },
+                    boxShadow: {
+                        'glow': '0 0 25px -5px rgba(124, 58, 237, 0.4)',
+                        'glow-hover': '0 0 35px -5px rgba(124, 58, 237, 0.6)',
+                        'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+                    }
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .text-glow {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+            .text-glow-violet {
+                 text-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+            }
+            .glass-panel {
+                background: rgba(255, 255, 255, 0.02);
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+            }
+            .atom-orbit {
+                position: absolute;
+                border: 1px solid rgba(139, 92, 246, 0.15);
+                border-radius: 50%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030005; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-gray-100 h-screen flex overflow-hidden antialiased selection:bg-violet-500/30 selection:text-violet-200 relative font-sans">
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute inset-0 bg-[#030005]"></div>
+<div class="absolute top-0 right-0 h-full w-[60vw] bg-gradient-to-l from-[#1e1035] via-[#0a0515] to-transparent opacity-60"></div>
+<div class="absolute top-1/2 right-[-10%] -translate-y-1/2 w-[50vw] h-[50vw] bg-violet-900/20 rounded-full blur-[120px] mix-blend-screen"></div>
+<div class="absolute inset-0 opacity-[0.07] mix-blend-overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBM9186nC0yZUNVUFQsJmJQknRzzd1AwL2I3qQuyt9v_TttYmsBObFae2tLBX02-ov1BYd6VcUw3Z6iiuB-b5QD-XrPY-_EOVG5eVTIPDNyFj4zZnUby6pJpUD8Yd1cV1qh1-Bz3kJ9jdffI4u-z-FYs5ExGr0v5Vjb2ORDUkKgMhxZduaD_ivZOQdfz9wmQD5WiW-mS98RHYrDsVS87PEOUqpfM1V_j_4cDoEI7MKJqvjs4zghP_QIMO3L6NVd7zST_F2DmWNPoHE');"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,0,5,0.4)_100%)]"></div>
+</div>
+<div class="relative z-10 flex w-full h-full">
+<aside class="w-[280px] bg-black border-r border-white/[0.08] flex flex-col py-6 px-4 hidden md:flex shrink-0 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
+<div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#100b1a] to-transparent pointer-events-none opacity-50"></div>
+<div class="relative flex flex-col h-full z-10">
+<div class="flex items-center gap-3 px-2 mb-10">
+<div class="w-8 h-8 relative flex items-center justify-center bg-violet-600 rounded-lg shadow-[0_0_15px_rgba(124,58,237,0.5)]">
+<span class="material-symbols-outlined text-white text-[20px]">bolt</span>
+</div>
+<div>
+<span class="font-bold text-lg tracking-wide text-white block leading-none">CROW</span>
+<span class="text-[9px] text-gray-400 font-medium tracking-[0.1em] uppercase block mt-1">CLIENT</span>
+</div>
+</div>
+<nav class="space-y-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-gray-500 group-hover:text-gray-300">grid_view</span>
+                    Overview
+                </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] text-white bg-white/[0.08] border border-white/[0.05] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-violet-300">chat_bubble</span>
+                    Ask CROW
+                </a>
+<div class="space-y-1">
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[14px] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-gray-500 group-hover:text-gray-300">timeline</span>
+                            Analysis
+                        </div>
+<span class="material-symbols-outlined text-[18px] text-gray-600">expand_more</span>
+</button>
+<div class="pl-10 space-y-1">
+<a class="block px-3 py-2 rounded-lg text-[13px] text-gray-500 hover:text-white hover:bg-white/[0.05] transition-colors" href="#">Interactions</a>
+<a class="block px-3 py-2 rounded-lg text-[13px] text-gray-500 hover:text-white hover:bg-white/[0.05] transition-colors" href="#">Patterns</a>
+</div>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-gray-500 group-hover:text-gray-300">group</span>
+                    Team
+                </a>
+</nav>
+<div class="mt-auto pt-6 border-t border-white/[0.08]">
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[14px] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-gray-500 group-hover:text-gray-300">settings</span>
+                        Settings
+                    </div>
+<span class="material-symbols-outlined text-[18px] text-gray-600">chevron_right</span>
+</button>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<header class="h-16 flex items-center justify-between px-8 bg-transparent shrink-0 z-20">
+<div class="flex items-center gap-6">
+<span class="text-sm font-medium text-white tracking-wide">Global Retail Ops</span>
+<div class="h-4 w-px bg-white/10"></div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 transition-colors">
+<span class="material-symbols-outlined text-[16px] text-gray-400">calendar_today</span>
+<span class="text-xs font-medium text-gray-300">Last 7 days</span>
+<span class="material-symbols-outlined text-[16px] text-gray-500">expand_more</span>
+</button>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-gray-500 hover:text-white transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-0 right-0 w-1.5 h-1.5 bg-violet-500 rounded-full border border-[#030005]"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-violet-900/40 flex items-center justify-center text-xs font-semibold text-white border border-white/10 ring-2 ring-black">
+                    SJ
+                </div>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto relative z-10 flex flex-col items-center justify-center pb-20">
+<div class="w-full max-w-4xl px-6 flex flex-col items-center">
+<div class="relative mb-12 flex flex-col items-center text-center">
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] pointer-events-none opacity-30">
+<div class="atom-orbit w-[100%] h-[40%] border-violet-500/30 rotate-45"></div>
+<div class="atom-orbit w-[100%] h-[40%] border-violet-500/30 -rotate-45"></div>
+<div class="atom-orbit w-[40%] h-[100%] border-violet-500/20"></div>
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-violet-400 rounded-full shadow-[0_0_10px_rgba(139,92,246,0.8)]"></div>
+</div>
+<div class="relative z-10 space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse"></span>
+<span class="text-[10px] font-bold text-violet-300 tracking-widest uppercase">System Active</span>
+</div>
+<h1 class="text-5xl font-bold tracking-tight">
+<span class="text-white">CROW</span>
+<span class="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">ENGINE</span>
+</h1>
+<p class="text-sm text-gray-400 max-w-md mx-auto leading-relaxed">
+                        Neural interface ready. Start a new session or select a suggested prompt below.
+                    </p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mb-12">
+<button class="text-left p-5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-violet-500/30 transition-all duration-300 group relative overflow-hidden h-32 flex flex-col justify-between">
+<div class="absolute inset-0 bg-gradient-to-br from-violet-500/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10">
+<div class="w-8 h-8 rounded-lg bg-gray-800/50 flex items-center justify-center border border-white/5 mb-3 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-gray-400 text-[18px] group-hover:text-violet-300">search</span>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-gray-200 group-hover:text-white">Investigate complaints</h3>
+<p class="text-[11px] text-gray-500 mt-1 group-hover:text-gray-400">Find drivers behind recent complaint spikes.</p>
+</div>
+</div>
+</button>
+<button class="text-left p-5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-violet-500/30 transition-all duration-300 group relative overflow-hidden h-32 flex flex-col justify-between">
+<div class="absolute inset-0 bg-gradient-to-br from-violet-500/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10">
+<div class="w-8 h-8 rounded-lg bg-gray-800/50 flex items-center justify-center border border-white/5 mb-3 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-gray-400 text-[18px] group-hover:text-violet-300">hourglass_top</span>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-gray-200 group-hover:text-white">Queue bottlenecks</h3>
+<p class="text-[11px] text-gray-500 mt-1 group-hover:text-gray-400">Locate stores and times with rising waits.</p>
+</div>
+</div>
+</button>
+<button class="text-left p-5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-violet-500/30 transition-all duration-300 group relative overflow-hidden h-32 flex flex-col justify-between">
+<div class="absolute inset-0 bg-gradient-to-br from-violet-500/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10">
+<div class="w-8 h-8 rounded-lg bg-gray-800/50 flex items-center justify-center border border-white/5 mb-3 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-gray-400 text-[18px] group-hover:text-violet-300">shopping_cart_off</span>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-gray-200 group-hover:text-white">Product drop-off</h3>
+<p class="text-[11px] text-gray-500 mt-1 group-hover:text-gray-400">See where shoppers abandon the journey.</p>
+</div>
+</div>
+</button>
+</div>
+<div class="w-full max-w-2xl mx-auto relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-violet-600/30 to-fuchsia-600/30 rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+<div class="relative flex items-center bg-[#0e0a15] rounded-full border border-white/10 shadow-lg focus-within:border-violet-500/50 transition-colors">
+<div class="pl-5 pr-3 text-violet-400">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+</div>
+<input class="w-full bg-transparent border-none focus:ring-0 text-white placeholder-gray-500 text-sm py-4" placeholder="Ask CROW anything…" type="text"/>
+<div class="pr-2 flex items-center gap-2">
+<button class="p-2 text-gray-500 hover:text-white transition-colors rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+<button class="p-2 bg-violet-600 hover:bg-violet-500 text-white rounded-full transition-all shadow-[0_0_10px_rgba(124,58,237,0.3)] hover:shadow-[0_0_15px_rgba(124,58,237,0.5)] flex items-center justify-center w-9 h-9">
+<span class="material-symbols-outlined text-[18px]">arrow_upward</span>
+</button>
+</div>
+</div>
+<div class="mt-3 text-center">
+<p class="text-[10px] text-gray-600">Answers include sources and supporting interactions.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

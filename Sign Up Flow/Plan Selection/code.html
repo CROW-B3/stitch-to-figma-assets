@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Choose Plan - CROW</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#7c3aed", // Violet-600
+                        primary_hover: "#8b5cf6", // Violet-500
+                        "background-dark": "#030005", // Deepest black
+                        "surface-dark": "#0a0a0f",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'pill': "9999px",
+                    },
+                    boxShadow: {
+                        'glow': '0 0 25px -5px rgba(124, 58, 237, 0.4)',
+                        'glow-hover': '0 0 35px -5px rgba(124, 58, 237, 0.6)',
+                        'card-glow': '0 0 40px -10px rgba(124, 58, 237, 0.15)',
+                    }
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .text-glow {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030005; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 3px;
+        }.plan-card {
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-gray-100 min-h-screen flex flex-col antialiased selection:bg-violet-500/30 selection:text-violet-200 overflow-x-hidden relative">
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute inset-0 bg-[#030005]"></div>
+<div class="absolute top-0 right-0 h-full w-[60vw] bg-gradient-to-l from-[#1e1035] via-[#0a0515] to-transparent opacity-60"></div>
+<div class="absolute top-1/2 right-[-10%] -translate-y-1/2 w-[50vw] h-[50vw] bg-violet-900/20 rounded-full blur-[120px] mix-blend-screen"></div>
+<div class="absolute inset-0 opacity-[0.07] mix-blend-overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBM9186nC0yZUNVUFQsJmJQknRzzd1AwL2I3qQuyt9v_TttYmsBObFae2tLBX02-ov1BYd6VcUw3Z6iiuB-b5QD-XrPY-_EOVG5eVTIPDNyFj4zZnUby6pJpUD8Yd1cV1qh1-Bz3kJ9jdffI4u-z-FYs5ExGr0v5Vjb2ORDUkKgMhxZduaD_ivZOQdfz9wmQD5WiW-mS98RHYrDsVS87PEOUqpfM1V_j_4cDoEI7MKJqvjs4zghP_QIMO3L6NVd7zST_F2DmWNPoHE');"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,0,5,0.4)_100%)]"></div>
+</div>
+<nav class="w-full flex justify-between items-center px-6 py-8 z-10 relative max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 relative flex items-center justify-center">
+<svg class="text-violet-500" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"></path>
+</svg>
+</div>
+<span class="font-semibold text-lg tracking-wide text-white">CROW</span>
+</div>
+<div class="flex items-center gap-4 text-sm">
+<span class="text-gray-500 hidden sm:inline-block">Already have an account?</span>
+<a class="text-gray-300 hover:text-white transition-colors font-medium text-xs sm:text-sm" href="#">
+                Log in
+            </a>
+</div>
+</nav>
+<main class="flex-grow flex flex-col items-center relative z-10 w-full px-4 py-8 max-w-7xl mx-auto">
+<div class="w-full max-w-2xl flex flex-col items-center text-center mb-10">
+<span class="text-violet-400 text-[10px] font-bold tracking-[0.2em] uppercase mb-4">PLAN</span>
+<h1 class="text-3xl md:text-4xl font-semibold text-white mb-3 tracking-tight text-glow">
+                Select a plan.
+            </h1>
+<p class="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
+                Plans scale with seats, connected sources, monthly events, and retention. You can change this later.
+            </p>
+<div class="w-10 h-0.5 bg-gradient-to-r from-violet-600 to-purple-900 rounded-full mt-6 opacity-80"></div>
+</div>
+<div class="w-full max-w-4xl flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-12">
+<div class="flex flex-col items-center gap-2">
+<span class="text-xs uppercase tracking-wider text-gray-500 font-medium">Billing</span>
+<div class="flex items-center bg-white/[0.03] border border-white/10 rounded-full p-1 relative">
+<button class="px-5 py-1.5 text-sm font-medium text-gray-400 hover:text-white transition-colors rounded-full relative z-10">Monthly</button>
+<button class="px-5 py-1.5 text-sm font-medium text-white bg-white/10 rounded-full shadow-sm relative z-10">Annual</button>
+</div>
+<span class="text-[10px] text-violet-400/80">Annual includes a discount.</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<span class="text-xs uppercase tracking-wider text-gray-500 font-medium">Seats</span>
+<div class="flex items-center bg-white/[0.03] border border-white/10 rounded-full p-1 gap-4 px-2">
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="text-sm font-medium text-white min-w-[1.5rem] text-center">5</span>
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<span class="text-[10px] text-gray-600">Seats control access.</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-6xl items-stretch mb-12">
+<div class="plan-card flex flex-col bg-white/[0.02] border border-white/10 rounded-3xl p-6 hover:border-white/20 transition-all duration-300">
+<div class="mb-6">
+<h3 class="text-xl font-semibold text-white mb-2">Team</h3>
+<p class="text-xs text-gray-500 leading-relaxed min-h-[3rem]">
+                        Single brand or small ops/analytics teams getting unified visibility fast.
+                    </p>
+</div>
+<div class="mb-6 space-y-1.5 border-t border-white/5 pt-4">
+<div class="flex justify-between text-xs text-gray-400">
+<span>Seats</span>
+<span class="text-gray-200">Up to 5</span>
+</div>
+<div class="flex justify-between text-xs text-gray-400">
+<span>Sources</span>
+<span class="text-gray-200">Up to 3</span>
+</div>
+<div class="flex justify-between text-xs text-gray-400">
+<span>Events/mo</span>
+<span class="text-gray-200">Up to 5M</span>
+</div>
+<div class="flex justify-between text-xs text-gray-400">
+<span>Retention</span>
+<span class="text-gray-200">30 days</span>
+</div>
+</div>
+<div class="flex-grow space-y-3 mb-8">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-violet-500 text-[16px] mt-0.5">check</span>
+<span class="text-xs text-gray-300">Ask CROW (chat over your data)</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-violet-500 text-[16px] mt-0.5">check</span>
+<span class="text-xs text-gray-300">Interactions explorer</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-violet-500 text-[16px] mt-0.5">check</span>
+<span class="text-xs text-gray-300">Patterns generation</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-violet-500 text-[16px] mt-0.5">check</span>
+<span class="text-xs text-gray-300">Alerts &amp; notification rules</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-violet-500 text-[16px] mt-0.5">check</span>
+<span class="text-xs text-gray-300">API keys + SDK access</span>
+</div>
+</div>
+<button class="w-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-white text-sm font-medium py-2.5 rounded-full transition-all duration-200">
+                    Proceed to payment
+                </button>
+</div>
+<div class="plan-card flex flex-col bg-white/[0.04] border border-violet-500/30 rounded-3xl p-6 relative shadow-card-glow ring-1 ring-violet-500/20 scale-[1.02] z-10">
+<div class="absolute top-0 right-0 left-0 flex justify-center -mt-3">
+<span class="bg-violet-600 text-[10px] font-bold uppercase tracking-wider text-white px-3 py-1 rounded-full shadow-lg">Recommended</span>
+</div>
+<div class="mb-6 mt-2">
+<h3 class="text-xl font-semibold text-white mb-2">Business</h3>
+<p class="text-xs text-gray-400 leading-relaxed min-h-[3rem]">
+                        Multi-store operations where alerts and patterns need higher volume + longer memory.
+                    </p>
+</div>
+<div class="mb-6 space-y-1.5 border-t border-white/10 pt-4">
+<div class="flex justify-between text-xs text-gray-400">
+<span>Seats</span>
+<span class="text-white font-medium">Up to 25</span>
+</div>
+<div class="flex justify-between text-xs text-gray-400">
+<span>Sources</span>
+<span class="text-white font-medium">Up to 10</span>
+</div>
+<div class="flex justify-between text-xs text-gray-400">
+<span>Events/mo</span>
+<span class="text-white font-medium">Up to 25M</span>
+</div>
+<div class="flex justify-between text-xs text-gray-400">
+<span>Retention</span>
+<span class="text-white font-medium">90 days</span>
+</div>
+</div>
+<div class="flex-grow space-y-3 mb-8">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-violet-400 text-[16px] mt-0.5">check_circle</span>
+<span class="text-xs text-gray-200 font-medium">Everything in Team</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-violet-400 text-[16px] mt-0.5">check</span>
+<span class="text-xs text-gray-300">Higher alert volume + routing</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-violet-400 text-[16px] mt-0.5">check</span>
+<span class="text-xs text-gray-300">Evidence-ready exports</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-violet-400 text-[16px] mt-0.5">check</span>
+<span class="text-xs text-gray-300">Priority ingestion reliability</span>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary_hover text-white text-sm font-medium py-2.5 rounded-full transition-all duration-300 shadow-glow hover:shadow-glow-hover">
+                    Proceed to payment
+                </button>
+</div>
+<div class="plan-card flex flex-col bg-white/[0.02] border border-white/10 rounded-3xl p-6 hover:border-white/20 transition-all duration-300">
+<div class="mb-6">
+<h3 class="text-xl font-semibold text-white mb-2">Enterprise</h3>
+<p class="text-xs text-gray-500 leading-relaxed min-h-[3rem]">
+                        Large retail networks with custom governance, retention, and scale requirements.
+                    </p>
+</div>
+<div class="mb-6 space-y-1.5 border-t border-white/5 pt-4">
+<div class="flex justify-between text-xs text-gray-400">
+<span>Seats</span>
+<span class="text-gray-200">Custom</span>
+</div>
+<div class="flex justify-between text-xs text-gray-400">
+<span>Sources</span>
+<span class="text-gray-200">Custom / Unlimited</span>
+</div>
+<div class="flex justify-between text-xs text-gray-400">
+<span>Events/mo</span>
+<span class="text-gray-200">Custom</span>
+</div>
+<div class="flex justify-between text-xs text-gray-400">
+<span>Retention</span>
+<span class="text-gray-200">Custom (180+)</span>
+</div>
+</div>
+<div class="flex-grow space-y-3 mb-8">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-violet-500 text-[16px] mt-0.5">check_circle</span>
+<span class="text-xs text-gray-300">Everything in Business</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-violet-500 text-[16px] mt-0.5">check</span>
+<span class="text-xs text-gray-300">Custom data retention &amp; limits</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-gray-600 text-[16px] mt-0.5">lock</span>
+<span class="text-xs text-gray-500">Advanced access controls (later)</span>
+</div>
+</div>
+<button class="w-full bg-transparent border border-white/20 hover:bg-white/5 text-gray-300 hover:text-white text-sm font-medium py-2.5 rounded-full transition-all duration-200">
+                    Contact sales
+                </button>
+</div>
+</div>
+<div class="w-full max-w-sm flex flex-col items-center gap-6">
+<button class="w-full bg-primary hover:bg-primary_hover text-white font-medium py-3 rounded-full transition-all duration-300 shadow-glow hover:shadow-glow-hover flex items-center justify-center gap-2 group">
+<span>Proceed to payment</span>
+<span class="group-hover:translate-x-1 transition-transform">→</span>
+</button>
+<div class="flex items-center gap-6 text-sm">
+<a class="text-gray-400 hover:text-white transition-colors" href="#">Compare plans</a>
+<span class="w-1 h-1 rounded-full bg-white/10"></span>
+<a class="text-gray-500 hover:text-gray-300 transition-colors" href="#">Not sure? Talk to us</a>
+</div>
+</div>
+</main>
+<footer class="w-full py-8 text-center z-10 relative">
+<div class="flex flex-col gap-2 px-4">
+<p class="text-[10px] text-gray-600">
+                'Events' are interaction records ingested from connected sources.
+            </p>
+<p class="text-[10px] text-gray-600">
+                You can upgrade/downgrade later in Settings.
+            </p>
+</div>
+</footer>
+
+</body></html>

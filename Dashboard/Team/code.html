@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Team (Manage Users) - CROW Client Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#7c3aed", // Violet-600
+                        primary_hover: "#8b5cf6", // Violet-500
+                        "background-dark": "#030005", // Deepest black
+                        "surface-dark": "#0a0a0f",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'pill': "9999px",
+                    },
+                    boxShadow: {
+                        'glow': '0 0 25px -5px rgba(124, 58, 237, 0.4)',
+                        'glow-hover': '0 0 35px -5px rgba(124, 58, 237, 0.6)',
+                        'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+                    }
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .text-glow {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+            .text-glow-violet {
+                 text-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+            }
+            .glass-panel {
+                background: rgba(255, 255, 255, 0.02);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+            }
+            .glass-panel-heavy {
+                background: rgba(10, 5, 20, 0.6);
+                backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .modal-overlay {
+                background: rgba(3, 0, 5, 0.85);
+                backdrop-filter: blur(8px);
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030005; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-gray-100 h-screen flex overflow-hidden antialiased selection:bg-violet-500/30 selection:text-violet-200 relative font-sans">
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute inset-0 bg-[#030005]"></div>
+<div class="absolute top-0 right-0 h-full w-[60vw] bg-gradient-to-l from-[#1e1035] via-[#0a0515] to-transparent opacity-60"></div>
+<div class="absolute top-1/2 right-[-10%] -translate-y-1/2 w-[50vw] h-[50vw] bg-violet-900/20 rounded-full blur-[120px] mix-blend-screen"></div>
+<div class="absolute inset-0 opacity-[0.07] mix-blend-overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBM9186nC0yZUNVUFQsJmJQknRzzd1AwL2I3qQuyt9v_TttYmsBObFae2tLBX02-ov1BYd6VcUw3Z6iiuB-b5QD-XrPY-_EOVG5eVTIPDNyFj4zZnUby6pJpUD8Yd1cV1qh1-Bz3kJ9jdffI4u-z-FYs5ExGr0v5Vjb2ORDUkKgMhxZduaD_ivZOQdfz9wmQD5WiW-mS98RHYrDsVS87PEOUqpfM1V_j_4cDoEI7MKJqvjs4zghP_QIMO3L6NVd7zST_F2DmWNPoHE');"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,0,5,0.4)_100%)]"></div>
+</div>
+<div class="relative z-10 flex w-full h-full">
+<aside class="w-[280px] bg-black border-r border-white/[0.08] flex flex-col py-6 px-4 hidden md:flex shrink-0 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
+<div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#100b1a] to-transparent pointer-events-none opacity-50"></div>
+<div class="relative flex flex-col h-full z-10">
+<div class="flex items-center gap-3 px-2 mb-10">
+<div class="w-8 h-8 relative flex items-center justify-center bg-violet-600 rounded-lg shadow-[0_0_15px_rgba(124,58,237,0.5)]">
+<span class="material-symbols-outlined text-white text-[20px]">bolt</span>
+</div>
+<div>
+<span class="font-bold text-lg tracking-wide text-white block leading-none">CROW</span>
+<span class="text-[9px] text-gray-400 font-medium tracking-[0.1em] uppercase block mt-1">CLIENT</span>
+</div>
+</div>
+<nav class="space-y-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-gray-500 group-hover:text-gray-300">grid_view</span>
+                        Overview
+                    </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-gray-500 group-hover:text-gray-300">chat_bubble</span>
+                        Ask CROW
+                    </a>
+<div class="space-y-1">
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[14px] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-gray-500 group-hover:text-gray-300">timeline</span>
+                                Analysis
+                            </div>
+<span class="material-symbols-outlined text-[18px] text-gray-600">expand_more</span>
+</button>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] text-white bg-white/[0.08] border border-white/[0.05] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-violet-300">group</span>
+                        Team
+                    </a>
+</nav>
+<div class="mt-auto pt-6 border-t border-white/[0.08]">
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[14px] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-gray-500 group-hover:text-gray-300">settings</span>
+                            Settings
+                        </div>
+<span class="material-symbols-outlined text-[18px] text-gray-600">chevron_right</span>
+</button>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<header class="h-16 flex items-center justify-between px-8 bg-transparent shrink-0 z-20 border-b border-white/[0.03]">
+<div class="flex items-center gap-6">
+<span class="text-sm font-medium text-white tracking-wide">Global Retail Ops</span>
+<div class="h-4 w-px bg-white/10"></div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 transition-colors group">
+<span class="material-symbols-outlined text-[16px] text-gray-400 group-hover:text-gray-300">calendar_today</span>
+<span class="text-xs font-medium text-gray-300 group-hover:text-white">Last 7 days</span>
+<span class="material-symbols-outlined text-[16px] text-gray-500">expand_more</span>
+</button>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-gray-500 hover:text-white transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-0 right-0 w-1.5 h-1.5 bg-violet-500 rounded-full border border-[#030005]"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-violet-900/40 flex items-center justify-center text-xs font-semibold text-white border border-white/10 ring-2 ring-black">
+                        SJ
+                    </div>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto relative z-10 flex flex-col p-8 scroll-smooth">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+<div>
+<h1 class="text-3xl font-bold text-white tracking-tight">Team</h1>
+<p class="text-gray-400 text-sm mt-1">Manage users and permissions in your workspace.</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 rounded-lg bg-transparent border border-white/10 hover:bg-white/[0.05] text-sm font-medium text-gray-300 transition-colors whitespace-nowrap">
+                                Role permissions
+                            </button>
+<button class="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-500 border border-violet-500 text-sm font-medium text-white shadow-[0_0_15px_rgba(124,58,237,0.3)] transition-all whitespace-nowrap" onclick="document.getElementById('invite-modal').classList.remove('hidden')">
+                                Invite members
+                            </button>
+</div>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-xs text-gray-500">Seats used: 5 / 10</span>
+<span class="text-xs text-gray-600">|</span>
+<a class="text-xs text-violet-400 hover:text-violet-300 hover:underline" href="#">View audit log</a>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 space-y-6">
+<div class="flex items-center gap-3">
+<div class="relative flex-1 max-w-sm">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-[18px]">search</span>
+<input class="w-full bg-white/[0.03] border border-white/10 rounded-lg pl-10 pr-4 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all" placeholder="Search members..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 transition-colors text-sm font-medium text-gray-300">
+                                Role: All
+                                <span class="material-symbols-outlined text-[16px] text-gray-500">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 transition-colors text-sm font-medium text-gray-300">
+                                Status: All
+                                <span class="material-symbols-outlined text-[16px] text-gray-500">expand_more</span>
+</button>
+</div>
+<div class="glass-panel-heavy rounded-xl overflow-hidden shadow-lg border border-white/[0.06]">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/[0.05] bg-white/[0.02]">
+<th class="py-3 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider w-[30%]">Member</th>
+<th class="py-3 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider hidden xl:table-cell">Email</th>
+<th class="py-3 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Role</th>
+<th class="py-3 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Status</th>
+<th class="py-3 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider hidden sm:table-cell">Last Active</th>
+<th class="py-3 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider w-[50px]"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/[0.05]">
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-violet-900/40 flex items-center justify-center text-xs font-semibold text-white ring-1 ring-white/10">SJ</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-white">S. Jay</span>
+<span class="text-xs text-gray-500 xl:hidden">sj@company.com</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-6 text-sm text-gray-400 hidden xl:table-cell">sj@company.com</td>
+<td class="py-3 px-6">
+<button class="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-white/[0.05] text-white hover:bg-white/[0.1] transition-colors border border-white/[0.05]">
+                                            Owner
+                                            <span class="material-symbols-outlined text-[12px] text-gray-500">expand_more</span>
+</button>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Active
+                                        </span>
+</td>
+<td class="py-3 px-6 text-sm text-gray-400 hidden sm:table-cell">3m ago</td>
+<td class="py-3 px-6 text-right">
+<button class="text-gray-500 hover:text-white transition-colors p-1 rounded-md hover:bg-white/5">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-indigo-900/40 flex items-center justify-center text-xs font-semibold text-indigo-200 ring-1 ring-white/10">RV</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-white">R. Vance</span>
+<span class="text-xs text-gray-500 xl:hidden">rv@company.com</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-6 text-sm text-gray-400 hidden xl:table-cell">rv@company.com</td>
+<td class="py-3 px-6">
+<button class="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-transparent text-gray-300 hover:bg-white/[0.05] transition-colors">
+                                            Manager
+                                            <span class="material-symbols-outlined text-[12px] text-gray-500">expand_more</span>
+</button>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Active
+                                        </span>
+</td>
+<td class="py-3 px-6 text-sm text-gray-400 hidden sm:table-cell">1h ago</td>
+<td class="py-3 px-6 text-right">
+<button class="text-gray-500 hover:text-white transition-colors p-1 rounded-md hover:bg-white/5">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-900/40 flex items-center justify-center text-xs font-semibold text-blue-200 ring-1 ring-white/10">NP</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-white">N. Perera</span>
+<span class="text-xs text-gray-500 xl:hidden">np@company.com</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-6 text-sm text-gray-400 hidden xl:table-cell">np@company.com</td>
+<td class="py-3 px-6">
+<button class="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-transparent text-gray-300 hover:bg-white/[0.05] transition-colors">
+                                            Analyst
+                                            <span class="material-symbols-outlined text-[12px] text-gray-500">expand_more</span>
+</button>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Active
+                                        </span>
+</td>
+<td class="py-3 px-6 text-sm text-gray-400 hidden sm:table-cell">Yesterday</td>
+<td class="py-3 px-6 text-right">
+<button class="text-gray-500 hover:text-white transition-colors p-1 rounded-md hover:bg-white/5">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-white/[0.02] transition-colors bg-white/[0.005]">
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full border border-dashed border-gray-600 flex items-center justify-center text-xs font-medium text-gray-500">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-400 italic">Invited User</span>
+<span class="text-xs text-gray-500 xl:hidden">invited@company.com</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-6 text-sm text-gray-500 italic hidden xl:table-cell">invited@company.com</td>
+<td class="py-3 px-6">
+<button class="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-transparent text-gray-400 hover:bg-white/[0.05] transition-colors">
+                                            Viewer
+                                            <span class="material-symbols-outlined text-[12px] text-gray-500">expand_more</span>
+</button>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-gray-500/10 text-gray-400 border border-gray-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span> Invited
+                                        </span>
+</td>
+<td class="py-3 px-6 text-sm text-gray-600 hidden sm:table-cell">—</td>
+<td class="py-3 px-6 text-right relative group-hover:block">
+<div class="relative inline-block text-left">
+<button class="text-gray-500 hover:text-white transition-colors p-1 rounded-md hover:bg-white/5">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="lg:col-span-1 space-y-6">
+<div class="glass-panel-heavy rounded-xl p-6 shadow-lg border border-white/[0.06] h-full flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-semibold text-white">Role permissions</h3>
+<button class="text-xs text-violet-400 hover:text-violet-300">Edit permissions</button>
+</div>
+<div class="space-y-5 flex-1">
+<div class="group">
+<div class="flex items-center justify-between mb-1">
+<span class="text-sm font-semibold text-white">Owner</span>
+<span class="text-[10px] text-violet-400 bg-violet-500/10 px-1.5 py-0.5 rounded border border-violet-500/20">FULL ACCESS</span>
+</div>
+<p class="text-xs text-gray-400 leading-relaxed">Billing, security, all settings, workspace management. Can delete workspace.</p>
+</div>
+<div class="h-px bg-white/[0.05]"></div>
+<div class="group">
+<div class="flex items-center justify-between mb-1">
+<span class="text-sm font-semibold text-white">Manager</span>
+</div>
+<p class="text-xs text-gray-400 leading-relaxed">Manage data sources, create patterns, manage alerts and monitoring rules.</p>
+</div>
+<div class="h-px bg-white/[0.05]"></div>
+<div class="group">
+<div class="flex items-center justify-between mb-1">
+<span class="text-sm font-semibold text-white">Analyst</span>
+</div>
+<p class="text-xs text-gray-400 leading-relaxed">Explore interactions &amp; patterns, export data, create reports. No config access.</p>
+</div>
+<div class="h-px bg-white/[0.05]"></div>
+<div class="group">
+<div class="flex items-center justify-between mb-1">
+<span class="text-sm font-semibold text-white">Viewer</span>
+</div>
+<p class="text-xs text-gray-400 leading-relaxed">Read-only access to dashboards and evidence. Cannot edit or export raw data.</p>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/[0.05]">
+<div class="rounded-lg bg-white/[0.03] border border-white/5 p-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-gray-500 text-[18px] mt-0.5">info</span>
+<div class="space-y-1">
+<p class="text-xs text-gray-300 font-medium">Need custom roles?</p>
+<p class="text-[11px] text-gray-500 leading-normal">Upgrade to Enterprise plan to create custom permission sets and granular access controls.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center" id="invite-modal">
+<div class="absolute inset-0 modal-overlay" onclick="document.getElementById('invite-modal').classList.add('hidden')"></div>
+<div class="relative w-full max-w-lg bg-[#0a0510] border border-white/[0.08] rounded-xl shadow-2xl overflow-hidden animate-fade-in-up">
+<div class="p-6 border-b border-white/[0.05] flex justify-between items-center bg-white/[0.02]">
+<h3 class="text-lg font-semibold text-white">Invite members</h3>
+<button class="text-gray-500 hover:text-white transition-colors" onclick="document.getElementById('invite-modal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6 space-y-6">
+<div class="space-y-2">
+<label class="block text-sm font-medium text-gray-300">Email addresses</label>
+<div class="bg-white/[0.03] border border-white/10 rounded-lg p-2 flex flex-wrap gap-2 min-h-[50px] focus-within:ring-1 focus-within:ring-violet-500/50 transition-all">
+<div class="inline-flex items-center gap-1 bg-white/[0.08] text-gray-200 text-xs px-2 py-1 rounded border border-white/[0.05]">
+                    newuser@client.com
+                    <button class="hover:text-white text-gray-400"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</div>
+<input class="bg-transparent border-none outline-none text-sm text-white placeholder-gray-500 flex-1 min-w-[120px]" placeholder="Add more..." type="text"/>
+</div>
+<p class="text-xs text-gray-500">Separate multiple emails with commas or enter.</p>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-gray-300">Role</label>
+<div class="relative">
+<select class="w-full appearance-none bg-white/[0.03] border border-white/10 rounded-lg pl-4 pr-10 py-2.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-violet-500/50 transition-all cursor-pointer">
+<option>Viewer</option>
+<option selected="">Analyst</option>
+<option>Manager</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-gray-500">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-gray-300">Message (Optional)</label>
+<textarea class="w-full bg-white/[0.03] border border-white/10 rounded-lg p-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-violet-500/50 transition-all h-20 resize-none" placeholder="Add a personal note to your invitation..."></textarea>
+</div>
+</div>
+<div class="p-6 pt-0 flex justify-end gap-3">
+<button class="px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/[0.05] transition-colors" onclick="document.getElementById('invite-modal').classList.add('hidden')">
+                Cancel
+            </button>
+<button class="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-500 border border-violet-500 text-sm font-medium text-white shadow-[0_0_15px_rgba(124,58,237,0.3)] transition-all" onclick="document.getElementById('invite-modal').classList.add('hidden')">
+                Send invites
+            </button>
+</div>
+</div>
+</div>
+</body></html>
