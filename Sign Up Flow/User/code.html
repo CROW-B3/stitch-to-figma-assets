@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign Up - CROW</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#7c3aed", // Violet-600
+                        primary_hover: "#8b5cf6", // Violet-500
+                        "background-dark": "#030005", // Deepest black
+                        "surface-dark": "#0a0a0f",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'pill': "9999px",
+                    },
+                    boxShadow: {
+                        'glow': '0 0 25px -5px rgba(124, 58, 237, 0.4)',
+                        'glow-hover': '0 0 35px -5px rgba(124, 58, 237, 0.6)',
+                    }
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .text-glow {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030005; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-gray-100 min-h-screen flex flex-col antialiased selection:bg-violet-500/30 selection:text-violet-200 overflow-x-hidden relative">
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute inset-0 bg-[#030005]"></div>
+<div class="absolute top-0 right-0 h-full w-[60vw] bg-gradient-to-l from-[#1e1035] via-[#0a0515] to-transparent opacity-60"></div>
+<div class="absolute top-1/2 right-[-10%] -translate-y-1/2 w-[50vw] h-[50vw] bg-violet-900/20 rounded-full blur-[120px] mix-blend-screen"></div>
+<div class="absolute inset-0 opacity-[0.07] mix-blend-overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBM9186nC0yZUNVUFQsJmJQknRzzd1AwL2I3qQuyt9v_TttYmsBObFae2tLBX02-ov1BYd6VcUw3Z6iiuB-b5QD-XrPY-_EOVG5eVTIPDNyFj4zZnUby6pJpUD8Yd1cV1qh1-Bz3kJ9jdffI4u-z-FYs5ExGr0v5Vjb2ORDUkKgMhxZduaD_ivZOQdfz9wmQD5WiW-mS98RHYrDsVS87PEOUqpfM1V_j_4cDoEI7MKJqvjs4zghP_QIMO3L6NVd7zST_F2DmWNPoHE');"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,0,5,0.4)_100%)]"></div>
+</div>
+<nav class="w-full flex justify-between items-center px-6 py-8 z-10 relative max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 relative flex items-center justify-center">
+<svg class="text-violet-500" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"></path>
+</svg>
+</div>
+<span class="font-semibold text-lg tracking-wide text-white">CROW</span>
+</div>
+<div class="flex items-center gap-4 text-sm">
+<span class="text-gray-500">Already have an account? <a class="text-violet-400 hover:text-white transition-colors font-medium ml-1" href="#">Log in</a></span>
+</div>
+</nav>
+<main class="flex-grow flex items-center justify-center relative z-10 w-full px-4 py-12">
+<div class="w-full max-w-[400px] flex flex-col items-center text-center">
+<div class="mb-10 flex flex-col items-center animate-fade-in">
+<span class="text-violet-400 text-[10px] font-bold tracking-[0.2em] uppercase mb-4">Sign Up</span>
+<h1 class="text-3xl md:text-4xl font-semibold text-white mb-3 tracking-tight text-glow">
+                    Create your CROW account.
+                </h1>
+<p class="text-gray-500 text-sm max-w-xs mx-auto leading-relaxed">
+                    Start unifying Web, CCTV, and Social signals.
+                </p>
+<div class="w-10 h-0.5 bg-gradient-to-r from-violet-600 to-purple-900 rounded-full mt-8 opacity-80"></div>
+</div>
+<form class="w-full space-y-5" onsubmit="event.preventDefault();">
+<div class="space-y-4">
+<div class="group relative">
+<input aria-label="Full name" autocomplete="name" class="w-full bg-white/[0.02] border border-white/10 rounded-full px-5 py-3.5 text-gray-200 placeholder-gray-600 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 focus:bg-white/[0.04] transition-all duration-300 shadow-inner" id="fullname" name="fullname" placeholder="Full name" type="text"/>
+</div>
+<div class="group relative">
+<input aria-label="Work email" autocomplete="email" class="w-full bg-white/[0.02] border border-white/10 rounded-full px-5 py-3.5 text-gray-200 placeholder-gray-600 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 focus:bg-white/[0.04] transition-all duration-300 shadow-inner" id="email" name="email" placeholder="Work email" type="email"/>
+</div>
+<div class="group relative">
+<input aria-label="Create password" autocomplete="new-password" class="w-full bg-white/[0.02] border border-white/10 rounded-full px-5 py-3.5 text-gray-200 placeholder-gray-600 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 focus:bg-white/[0.04] transition-all duration-300 shadow-inner" id="password" name="password" placeholder="Create password" type="password"/>
+</div>
+</div>
+<div class="flex items-start gap-3 px-2 pt-1 text-left">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 rounded border-gray-700 bg-white/5 text-violet-600 focus:ring-offset-0 focus:ring-violet-500/40 transition-colors cursor-pointer" id="terms" name="terms" type="checkbox"/>
+</div>
+<label class="text-xs text-gray-500 leading-5" for="terms">
+                        I agree to the <a class="text-gray-400 hover:text-white transition-colors underline decoration-gray-700 underline-offset-2" href="#">Terms</a> and <a class="text-gray-400 hover:text-white transition-colors underline decoration-gray-700 underline-offset-2" href="#">Privacy Policy</a>.
+                    </label>
+</div>
+<button class="w-full bg-primary hover:bg-primary_hover text-white font-medium py-3.5 rounded-full transition-all duration-300 shadow-glow hover:shadow-glow-hover flex items-center justify-center gap-2 group mt-2" type="submit">
+<span>Continue</span>
+<svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="flex items-center gap-3 py-2 w-full">
+<div class="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent w-full opacity-50"></div>
+<span class="text-[10px] uppercase tracking-widest text-gray-600 font-medium shrink-0">Or</span>
+<div class="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent w-full opacity-50"></div>
+</div>
+<button class="w-full bg-transparent border border-white/10 hover:bg-white/5 hover:border-white/20 text-gray-300 font-medium py-3.5 rounded-full transition-all duration-200 flex items-center justify-center gap-3 group" type="button">
+<svg class="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.35 11.1H12v2.8h5.25c-.2 1.2-1.2 3.5-5.25 3.5-3.15 0-5.75-2.6-5.75-5.75s2.6-5.75 5.75-5.75c1.5 0 2.85.55 3.9 1.55l2.25-2.25C16.75 3.7 14.55 3 12 3 7.05 3 3 7.05 3 12s4.05 9 9 9c4.75 0 8-3.3 8-8.25 0-.75-.1-1.45-.25-2.15z" fill="currentColor"></path>
+</svg>
+<span class="text-sm">Continue with Google</span>
+</button>
+</form>
+</div>
+</main>
+<div class="w-full py-4 text-center z-10 relative"></div>
+
+</body></html>
