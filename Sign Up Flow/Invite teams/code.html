@@ -2,7 +2,7 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Invite Team</title>
+<title>Invite Team - Granular Permissions</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -42,11 +42,18 @@
             .text-glow {
                 text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
             }
-            .checkbox-wrapper input:checked + div {
-                @apply bg-primary border-primary text-white;
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
             }
-            .checkbox-wrapper input:checked + div svg {
-                @apply block;
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }.toggle-checkbox:checked {
+                right: 0;
+                border-color: #7c3aed;
+            }
+            .toggle-checkbox:checked + .toggle-label {
+                background-color: #7c3aed;
             }
         }
     </style>
@@ -59,7 +66,7 @@
 <div class="absolute inset-0 opacity-[0.07] mix-blend-overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBM9186nC0yZUNVUFQsJmJQknRzzd1AwL2I3qQuyt9v_TttYmsBObFae2tLBX02-ov1BYd6VcUw3Z6iiuB-b5QD-XrPY-_EOVG5eVTIPDNyFj4zZnUby6pJpUD8Yd1cV1qh1-Bz3kJ9jdffI4u-z-FYs5ExGr0v5Vjb2ORDUkKgMhxZduaD_ivZOQdfz9wmQD5WiW-mS98RHYrDsVS87PEOUqpfM1V_j_4cDoEI7MKJqvjs4zghP_QIMO3L6NVd7zST_F2DmWNPoHE');"></div>
 <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,0,5,0.4)_100%)]"></div>
 </div>
-<nav class="w-full flex justify-between items-center px-6 py-4 z-10 relative max-w-7xl mx-auto shrink-0">
+<nav class="w-full flex justify-between items-center px-6 py-4 z-10 relative max-w-7xl mx-auto shrink-0 h-16">
 <div class="flex items-center gap-3">
 <div class="w-6 h-6 relative flex items-center justify-center">
 <svg class="text-violet-500" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -74,56 +81,218 @@
             </a>
 </div>
 </nav>
-<main class="flex-grow flex flex-col items-center justify-center relative z-10 w-full px-6 pb-6 max-w-5xl mx-auto h-full overflow-hidden">
-<div class="w-full max-w-[850px] flex flex-col justify-center h-full max-h-[850px]">
+<main class="flex-grow flex flex-col items-center justify-center relative z-10 w-full px-6 pb-6 max-w-7xl mx-auto h-[calc(100vh-64px)] overflow-hidden">
+<div class="w-full flex flex-col justify-center h-full max-h-[850px]">
 <div class="w-full flex flex-col items-center text-center mb-6 shrink-0">
 <span class="text-[10px] font-bold tracking-[0.2em] text-violet-400 uppercase mb-2">SETUP</span>
-<h1 class="text-3xl md:text-4xl font-semibold text-white mb-1.5 tracking-tight text-glow">
+<h1 class="text-3xl md:text-4xl font-semibold text-white mb-2 tracking-tight text-glow">
                     Invite your team.
                 </h1>
 <p class="text-gray-400 text-sm leading-tight">
-                    Add analysts and managers to your workspace.
+                    Add teammates and control what they can access.
                 </p>
-<div class="w-8 h-[1px] bg-violet-500/50 mt-4 rounded-full"></div>
+<div class="w-8 h-[1px] bg-violet-500/50 mt-5 rounded-full"></div>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mb-8">
-<div class="flex flex-col gap-6 justify-center">
-<div class="space-y-1.5">
-<label class="text-xs font-medium text-gray-300 ml-1 block">Email address</label>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full mb-8 items-start h-full min-h-0">
+<div class="flex flex-col gap-5 w-full max-w-[520px] mx-auto lg:mx-0 justify-self-end h-full overflow-hidden">
+<div class="flex flex-col h-full overflow-y-auto scrollbar-hide pr-2">
+<div class="space-y-2 mb-6">
+<label class="text-xs font-medium text-gray-300 ml-1 block">Email addresses</label>
 <div class="w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2 flex flex-wrap gap-2 focus-within:border-violet-500/50 transition-colors shadow-inner min-h-[52px] items-center">
 <span class="bg-violet-500/20 border border-violet-500/20 text-violet-100 text-[11px] font-medium px-2 py-0.5 rounded-md flex items-center gap-1">
-                                sarah@partner.com
-                                <button class="hover:text-white text-violet-300 focus:outline-none"><span class="material-symbols-outlined text-[12px]">close</span></button>
+                                    sarah@partner.com
+                                    <button class="hover:text-white text-violet-300 focus:outline-none flex items-center"><span class="material-symbols-outlined text-[12px]">close</span></button>
 </span>
 <input class="bg-transparent border-none focus:ring-0 text-sm p-0 text-gray-300 placeholder:text-gray-600 flex-grow min-w-[120px] h-6" placeholder="name@company.com" type="text"/>
 </div>
 <p class="text-[10px] text-gray-500 ml-1">Press Enter to add multiple emails.</p>
 </div>
-<div class="space-y-1.5">
-<label class="text-xs font-medium text-gray-300 ml-1 block">Role</label>
-<div class="relative">
-<select class="w-full bg-white/5 border border-white/10 rounded-full py-2.5 pl-4 pr-10 text-sm text-gray-300 focus:outline-none focus:border-violet-500/50 transition-all appearance-none cursor-pointer">
-<option class="bg-[#0a0a0f]" value="viewer">Viewer</option>
-<option class="bg-[#0a0a0f]" selected="" value="analyst">Analyst</option>
-<option class="bg-[#0a0a0f]" value="manager">Manager</option>
+<div class="space-y-4 mb-6">
+<div class="border-b border-white/5 pb-2 mb-2">
+<h3 class="text-xs font-medium text-white uppercase tracking-wider ml-1">Access</h3>
+<p class="text-[10px] text-gray-500 ml-1 mt-0.5">Toggle what this invite can access.</p>
+</div>
+<div class="space-y-3">
+<div class="bg-white/[0.02] border border-violet-500/30 rounded-xl overflow-hidden transition-all duration-200">
+<div class="p-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-violet-500/10 flex items-center justify-center text-violet-400">
+<span class="material-symbols-outlined text-[18px]">chat_bubble</span>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-200">Chat</div>
+<div class="text-[10px] text-gray-500">Ask questions over allowed sources.</div>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+</label>
+</div>
+<div class="px-3 pb-3 pt-0 border-t border-white/5 bg-white/[0.01]">
+<div class="mt-3 space-y-3 pl-11">
+<div>
+<label class="text-[10px] font-medium text-gray-400 mb-1.5 block">Allowed components <span class="text-violet-400">*</span></label>
+<div class="flex gap-2">
+<label class="flex items-center gap-1.5 cursor-pointer select-none bg-violet-500/20 border border-violet-500/30 px-2 py-1 rounded-full">
+<input checked="" class="rounded-full text-violet-500 border-none bg-transparent focus:ring-0 w-3 h-3" type="checkbox"/>
+<span class="text-[10px] text-violet-100 font-medium">Web</span>
+</label>
+<label class="flex items-center gap-1.5 cursor-pointer select-none bg-violet-500/20 border border-violet-500/30 px-2 py-1 rounded-full">
+<input checked="" class="rounded-full text-violet-500 border-none bg-transparent focus:ring-0 w-3 h-3" type="checkbox"/>
+<span class="text-[10px] text-violet-100 font-medium">CCTV</span>
+</label>
+<label class="flex items-center gap-1.5 cursor-pointer select-none bg-white/5 border border-white/10 hover:bg-white/10 px-2 py-1 rounded-full transition-colors">
+<input class="rounded-full text-gray-400 border-none bg-transparent focus:ring-0 w-3 h-3" type="checkbox"/>
+<span class="text-[10px] text-gray-400 font-medium">Social</span>
+</label>
+</div>
+<p class="text-[9px] text-gray-600 mt-1">Select at least 1 component.</p>
+</div>
+<div>
+<label class="text-[10px] font-medium text-gray-400 mb-1.5 block">Max lookback window</label>
+<select class="bg-black/20 border border-white/10 text-gray-300 text-[11px] rounded-lg px-2 py-1.5 w-full focus:ring-violet-500/30 focus:border-violet-500/50">
+<option>7 days</option>
+<option>30 days</option>
+<option>90 days</option>
+<option selected="">1 year</option>
+<option>All retention</option>
 </select>
-<div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-gray-500">
-<span class="material-symbols-outlined text-[18px]">expand_more</span>
 </div>
 </div>
-<p class="text-[10px] text-gray-500 ml-1">You can change roles later in Team settings.</p>
 </div>
 </div>
-<div class="bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-2xl p-5 flex flex-col h-full shadow-card-glow min-h-[320px]">
-<h3 class="text-xs font-semibold text-white tracking-tight uppercase text-violet-200/70 mb-4">Pending invitations</h3>
-<div class="flex flex-col h-full">
+<div class="bg-white/[0.02] border border-white/5 hover:border-white/10 rounded-xl transition-all duration-200 p-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-200">Interactions</div>
+<div class="text-[10px] text-gray-500">View evidence feed and export.</div>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+</label>
+</div>
+<div class="bg-white/[0.02] border border-white/5 hover:border-white/10 rounded-xl transition-all duration-200 p-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400">
+<span class="material-symbols-outlined text-[18px]">timeline</span>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-200">Patterns</div>
+<div class="text-[10px] text-gray-500">View derived patterns and anomalies.</div>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+</label>
+</div>
+<div class="bg-white/[0.02] border border-white/5 hover:border-white/10 rounded-xl transition-all duration-200 p-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400">
+<span class="material-symbols-outlined text-[18px]">group</span>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-200">Team management</div>
+<div class="text-[10px] text-gray-500">Invite/revoke members and manage access.</div>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+</label>
+</div>
+<div class="bg-white/[0.02] border border-violet-500/30 rounded-xl overflow-hidden transition-all duration-200">
+<div class="p-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-violet-500/10 flex items-center justify-center text-violet-400">
+<span class="material-symbols-outlined text-[18px]">key</span>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-200">API keys</div>
+<div class="text-[10px] text-gray-500">Create and manage API keys.</div>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+</label>
+</div>
+<div class="px-3 pb-3 pt-0 border-t border-white/5 bg-white/[0.01]">
+<div class="mt-2 pl-11">
+<label class="text-[10px] font-medium text-gray-400 mb-2 block">Key scopes</label>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<label class="relative inline-flex items-center cursor-pointer scale-75 origin-left">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+</label>
+<span class="text-[10px] text-gray-300">Interactions</span>
+</div>
+<div class="flex items-center gap-2">
+<label class="relative inline-flex items-center cursor-pointer scale-75 origin-left">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+</label>
+<span class="text-[10px] text-gray-300">Patterns</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<label class="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-2 block">Summary</label>
+<div class="flex flex-wrap gap-1.5">
+<span class="bg-violet-500/10 border border-violet-500/20 text-violet-200 text-[10px] px-2 py-0.5 rounded font-medium">Chat: Web + CCTV (≤ 1y)</span>
+<span class="bg-white/5 border border-white/10 text-gray-300 text-[10px] px-2 py-0.5 rounded font-medium">Interactions</span>
+<span class="bg-white/5 border border-white/10 text-gray-300 text-[10px] px-2 py-0.5 rounded font-medium">Patterns</span>
+<span class="bg-white/5 border border-white/10 text-gray-300 text-[10px] px-2 py-0.5 rounded font-medium">API keys: Interactions</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-white/5">
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<button class="bg-primary hover:bg-primary_hover text-white text-sm font-medium px-8 py-2.5 rounded-full transition-all shadow-glow hover:shadow-glow-hover whitespace-nowrap flex-grow justify-center">
+                                    Send invites
+                                </button>
+<button class="bg-transparent border border-white/10 hover:border-white/20 text-gray-400 hover:text-white text-sm font-medium px-6 py-2.5 rounded-full transition-all whitespace-nowrap">
+                                    Skip for now
+                                </button>
+</div>
+<p class="text-[11px] text-gray-500 text-center">
+                                Invites are sent by email. Access activates after acceptance.
+                            </p>
+</div>
+</div>
+</div>
+<div class="bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-2xl p-6 flex flex-col h-full shadow-card-glow w-full max-w-[480px] justify-self-start overflow-hidden relative">
+<div class="absolute top-0 right-0 w-full h-8 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none z-10"></div>
+<div class="flex items-center justify-between mb-5 shrink-0">
+<h3 class="text-xs font-semibold tracking-tight uppercase text-violet-200/70">Pending invitations</h3>
+</div>
+<div class="flex flex-col h-full overflow-y-auto scrollbar-hide pr-1">
 <div class="flex flex-col divide-y divide-white/5">
-<div class="py-3 flex items-center justify-between group">
-<div class="flex flex-col gap-0.5">
+<div class="py-4 flex flex-col gap-2 group first:pt-0">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-indigo-700 flex items-center justify-center text-[10px] font-bold text-white shadow-inner">
+                                            AC
+                                        </div>
+<div>
+<div class="flex items-center gap-2">
 <span class="text-sm text-gray-200 font-medium">alex@company.com</span>
-<div class="flex items-center gap-2">
-<span class="text-[9px] uppercase tracking-wider px-1.5 py-px rounded border border-white/10 text-gray-400">Analyst</span>
-<span class="text-[10px] text-gray-500">Pending</span>
+</div>
+<div class="mt-0.5">
+<span class="text-[9px] uppercase tracking-wider px-1.5 py-px rounded-sm border border-yellow-500/20 bg-yellow-500/10 text-yellow-500/80 font-medium">Pending</span>
+</div>
 </div>
 </div>
 <div class="flex items-center gap-3 opacity-60 group-hover:opacity-100 transition-opacity">
@@ -131,12 +300,26 @@
 <button class="text-[10px] font-medium text-gray-500 hover:text-red-400 transition-colors uppercase tracking-wide">Revoke</button>
 </div>
 </div>
-<div class="py-3 flex items-center justify-between group">
-<div class="flex flex-col gap-0.5">
+<div class="flex flex-wrap gap-1.5 ml-11 mt-1">
+<span class="text-[10px] px-1.5 py-px rounded bg-white/5 border border-white/10 text-gray-400">Chat: Web + CCTV (≤ 90d)</span>
+<span class="text-[10px] px-1.5 py-px rounded bg-white/5 border border-white/10 text-gray-400">Interactions</span>
+<span class="text-[10px] px-1.5 py-px rounded bg-white/5 border border-white/10 text-gray-400">Patterns</span>
+<span class="text-[10px] px-1.5 py-px rounded bg-white/5 border border-white/10 text-gray-400">API keys: Interactions</span>
+</div>
+</div>
+<div class="py-4 flex flex-col gap-2 group">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-[10px] font-bold text-gray-300 shadow-inner">
+                                            MR
+                                        </div>
+<div>
+<div class="flex items-center gap-2">
 <span class="text-sm text-gray-200 font-medium">maria@retail.co</span>
-<div class="flex items-center gap-2">
-<span class="text-[9px] uppercase tracking-wider px-1.5 py-px rounded border border-violet-500/30 text-violet-300 bg-violet-500/5">Manager</span>
-<span class="text-[10px] text-gray-500">Pending</span>
+</div>
+<div class="mt-0.5">
+<span class="text-[9px] uppercase tracking-wider px-1.5 py-px rounded-sm border border-yellow-500/20 bg-yellow-500/10 text-yellow-500/80 font-medium">Pending</span>
+</div>
 </div>
 </div>
 <div class="flex items-center gap-3 opacity-60 group-hover:opacity-100 transition-opacity">
@@ -144,12 +327,23 @@
 <button class="text-[10px] font-medium text-gray-500 hover:text-red-400 transition-colors uppercase tracking-wide">Revoke</button>
 </div>
 </div>
-<div class="py-3 flex items-center justify-between group">
-<div class="flex flex-col gap-0.5">
+<div class="flex flex-wrap gap-1.5 ml-11 mt-1">
+<span class="text-[10px] px-1.5 py-px rounded bg-white/5 border border-white/10 text-gray-400">Patterns</span>
+</div>
+</div>
+<div class="py-4 flex flex-col gap-2 group">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-900 to-blue-950 flex items-center justify-center text-[10px] font-bold text-blue-200 shadow-inner">
+                                            JO
+                                        </div>
+<div>
+<div class="flex items-center gap-2">
 <span class="text-sm text-gray-200 font-medium">james@ops.net</span>
-<div class="flex items-center gap-2">
-<span class="text-[9px] uppercase tracking-wider px-1.5 py-px rounded border border-white/10 text-gray-400">Viewer</span>
-<span class="text-[10px] text-gray-500">Pending</span>
+</div>
+<div class="mt-0.5">
+<span class="text-[9px] uppercase tracking-wider px-1.5 py-px rounded-sm border border-yellow-500/20 bg-yellow-500/10 text-yellow-500/80 font-medium">Pending</span>
+</div>
 </div>
 </div>
 <div class="flex items-center gap-3 opacity-60 group-hover:opacity-100 transition-opacity">
@@ -157,12 +351,25 @@
 <button class="text-[10px] font-medium text-gray-500 hover:text-red-400 transition-colors uppercase tracking-wide">Revoke</button>
 </div>
 </div>
-<div class="py-3 flex items-center justify-between group">
-<div class="flex flex-col gap-0.5">
+<div class="flex flex-wrap gap-1.5 ml-11 mt-1">
+<span class="text-[10px] px-1.5 py-px rounded bg-white/5 border border-white/10 text-gray-400">Chat: Social (≤ 1y)</span>
+<span class="text-[10px] px-1.5 py-px rounded bg-white/5 border border-white/10 text-gray-400">Interactions</span>
+<span class="text-[10px] px-1.5 py-px rounded bg-white/5 border border-white/10 text-gray-400">Patterns</span>
+</div>
+</div>
+<div class="py-4 flex flex-col gap-2 group">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-900 to-emerald-950 flex items-center justify-center text-[10px] font-bold text-emerald-200 shadow-inner">
+                                            KL
+                                        </div>
+<div>
+<div class="flex items-center gap-2">
 <span class="text-sm text-gray-200 font-medium">karl@logistics.io</span>
-<div class="flex items-center gap-2">
-<span class="text-[9px] uppercase tracking-wider px-1.5 py-px rounded border border-white/10 text-gray-400">Analyst</span>
-<span class="text-[10px] text-gray-500">Pending</span>
+</div>
+<div class="mt-0.5">
+<span class="text-[9px] uppercase tracking-wider px-1.5 py-px rounded-sm border border-yellow-500/20 bg-yellow-500/10 text-yellow-500/80 font-medium">Pending</span>
+</div>
 </div>
 </div>
 <div class="flex items-center gap-3 opacity-60 group-hover:opacity-100 transition-opacity">
@@ -170,22 +377,15 @@
 <button class="text-[10px] font-medium text-gray-500 hover:text-red-400 transition-colors uppercase tracking-wide">Revoke</button>
 </div>
 </div>
+<div class="flex flex-wrap gap-1.5 ml-11 mt-1">
+<span class="text-[10px] px-1.5 py-px rounded bg-white/5 border border-white/10 text-gray-400">Team management</span>
+<span class="text-[10px] px-1.5 py-px rounded bg-white/5 border border-white/10 text-gray-400">Chat: Web + CCTV + Social (≤ 1y)</span>
 </div>
 </div>
 </div>
 </div>
-<div class="w-full flex flex-col items-center gap-4 mt-2">
-<div class="flex items-center gap-4 w-full justify-center">
-<button class="w-full sm:w-auto bg-primary hover:bg-primary_hover text-white text-sm font-medium px-10 py-2.5 rounded-full transition-all shadow-glow hover:shadow-glow-hover whitespace-nowrap">
-                        Send invites
-                    </button>
-<button class="w-full sm:w-auto bg-transparent border border-white/10 hover:border-white/20 text-gray-400 hover:text-white text-sm font-medium px-10 py-2.5 rounded-full transition-all whitespace-nowrap">
-                        Skip
-                    </button>
+<div class="absolute bottom-0 right-0 w-full h-8 bg-gradient-to-t from-white/[0.03] to-transparent pointer-events-none z-10"></div>
 </div>
-<p class="text-xs text-gray-500 text-center">
-                    Invites are sent by email. Users can join after accepting.
-                </p>
 </div>
 </div>
 </main>
